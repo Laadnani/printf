@@ -31,7 +31,6 @@ int _printf(char *format, ...)
 			j = va_arg(args, int);
 			_putchar(j);
 			break;
-#ifndef MAIN_H
 		case 's':
 			str = va_arg(args, char*);
 			_puts(str);
@@ -51,5 +50,4 @@ int _printf(char *format, ...)
 	}
 	va_end(args);
 	return (i);
-#endif
 }
