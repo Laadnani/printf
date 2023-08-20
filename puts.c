@@ -4,6 +4,7 @@
 /**
  * _puts - prints strings
  * @str: pointer to the string
+ * Return: returning i index
  */
 
 int _puts(char *str)
