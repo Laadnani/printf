@@ -6,17 +6,56 @@
  * Return: number to print
  */
 
-void printnum(int num)
+int printnum(int num)
 {
-	if (num)
+	char *i, temp;
+	int numval, len, count, len3, len4 = 0;
+	int len2 = 0;
+
+	i = malloc(sizeof(int) * 12);
+
+	if (i) 
 	{
-		if (num < 0)
+        if (num)
+        {
+                if (num < 0)
+                {
+                        i[0] = '-';
+			num *= -1;
+                }
+		else
 		{
-			_putchar('-');
-			num = -num;
+			if (num == 0)
+			{
+				i[0] = '0';
+				i[1] = '\0';
+			}
 		}
-		if (num / 10)
-		printnum(num / 10);
-		_putchar((num % 10) + '0');
+		do {
+			numval = num % 10;
+			i[count] = numval + '0';
+			num = num / 10;
+			count++;
+		}
+                while (num != 0);
+		{
+                	i[count] = '\0';
+                	len = count - 1;
+		}
+		if (i[0] == '-')
+		{
+			len2 += 1;
+		}
+		for(len3 = len2; len3 < len; len3++)
+		{
+			temp = i[len3];
+			i[len3] = i[len];
+			i[len] = temp;
+			len--;
+		}
+        }
 	}
+	len4 += _puts(i);
+	free(i);
+	return (len4);
 }

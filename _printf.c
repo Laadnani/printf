@@ -9,6 +9,7 @@
 int _printf(char *format, ...)
 {
 	char *str;
+	int len;
 	int i, j;
 
 	va_list(args);
@@ -21,7 +22,7 @@ int _printf(char *format, ...)
 			{
 				return (i);
 			}
-			_putchar(format[i]);
+			len += _putchar(format[i]);
 			i++;
 		}
 		i++;
@@ -29,25 +30,22 @@ int _printf(char *format, ...)
 		{
 		case 'c':
 			j = va_arg(args, int);
-			_putchar(j);
+			len += _putchar(j);
 			break;
 		case 's':
 			str = va_arg(args, char*);
-			_puts(str);
+			len += _puts(str);
 			break;
 		case 'i':
+		case 'd':
 			j = va_arg(args, int);
-			printnum(format[i]);
+			len += printnum(j);
 			break;
 		case '%':
-			_putchar(37);
-			break;
-		default:
-			j = va_arg(args, int);
-			_putchar(j);
+			len += _putchar(37);
 			break;
 		}
 	}
 	va_end(args);
-	return (i);
+	return (len);
 }
