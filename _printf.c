@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 
 	if (!format || !format[0])
 	{
-		return (-1);
+		return (0);
 	}
 	for (i = 0; format[i]; i++)
 	{
@@ -27,7 +27,7 @@ int _printf(const char *format, ...)
 			{
 				return (i);
 			}
-			len += _putchar(format[i]);
+			len +=_putchar(format[i]); 
 			i++;
 		}
 		i++;
@@ -53,7 +53,7 @@ int _printf(const char *format, ...)
 		default:
 			_putchar(37);
 			_putchar(format[i]);
-			len += 2;
+			len += 1;
 			break;
 		}
 	}
