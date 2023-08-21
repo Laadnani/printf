@@ -10,7 +10,7 @@
 int _puts(char *str)
 {
 	int i = 0;
-	
+
 	if (str == NULL)
 	{
 		_puts("null");

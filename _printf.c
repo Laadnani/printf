@@ -51,9 +51,10 @@ int _printf(const char *format, ...)
 			len++;
 			break;
 		default:
+			_putchar(37);
 			_putchar(format[i]);
-			len++;
-			i++;
+			len += 2;
+			break;
 		}
 	}
 	va_end(args);

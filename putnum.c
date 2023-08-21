@@ -12,7 +12,7 @@ int num_len(int num)
 	{
 		return (0);
 	}
-	return (num_len(num / 10));
+	return (1 + num_len(num / 10));
 }
 
 /**
@@ -37,8 +37,8 @@ int printnum(int num)
 	}
 	if (num >= 10)
 	{
-		printnum(num / 10);
-		printnum(num % 10);
+		count += printnum(num / 10);
+		count += printnum(num % 10);
 	}
 	else if (num < 10)
 	{
