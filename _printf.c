@@ -6,14 +6,19 @@
  *
  * Return: returning the int i
  */
-int _printf(char *format, ...)
+int _printf(const char *format, ...)
 {
 	char *str;
-	int len;
+	int len = 0;
 	int i, j;
 
 	va_list(args);
 	va_start(args, format);
+
+	if (!format || !format[0])
+	{
+		return(-1);
+	}
 	for (i = 0; format[i]; i++)
 	{
 		while (format[i] != '%')
