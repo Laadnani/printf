@@ -47,8 +47,13 @@ int _printf(const char *format, ...)
 			len += printnum(j);
 			break;
 		case '%':
-			len += _putchar(37);
+			_putchar(37);
+			len++;
 			break;
+		default:
+			_putchar(format[i]);
+			len++;
+			i++;
 		}
 	}
 	va_end(args);

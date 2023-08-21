@@ -10,13 +10,17 @@
 int _puts(char *str)
 {
 	int i = 0;
-	int re = 0;
-
+	
+	if (str == NULL)
+	{
+		_puts("null");
+		return (i);
+	}
 	while (str[i] != '\0')
 	{
 		_putchar(str[i]);
 		i++;
-		re += 1;
 	}
-	return (re);
+	i++;
+	return (i);
 }

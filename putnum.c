@@ -1,56 +1,46 @@
 #include "main.h"
 
 /**
+ * num_len - return the lenght of the number
+ * @num: number to treat
+ * Return: lenght of the number treated
+ */
+
+int num_len(int num)
+{
+	if (num == 0)
+	{
+		return (0);
+	}
+	return (num_len(num / 10));
+}
+
+/**
  * printnum - functions that prints the numbers
  * @num: numbers to be printed
- * Return: number to print
+ * Return: count of printed number(s)
  */
 
 int printnum(int num)
 {
-	char *i, temp;
-	int numval, len, count, len3, len4 = 0;
-	int len2 = 0;
+	int count = 0;
 
-	i = malloc(sizeof(int) * 12);
-	if (i)
+	if (num < 0)
+		count++;
+	count += num_len(num);
+	if (num < 0)
 	{
-		if (num)
-		{
-			if (num < 0)
-			{
-				i[0] = '-';
-				num *= -1;
-			}
-			else
-			{
-				if (num == 0)
-				{
-					i[0] = '0';
-					i[1] = '\0';
-				}
-			}
-			do {
-				numval = num % 10;
-				i[count] = numval + '0';
-				num = num / 10;
-				count++;
-			} while (num != 0);
-			i[count] = '\0';
-			len = count - 1;
-			if (i[0] == '-')
-				len2 += 1;
-			for (len3 = len2; len3 < len; len3++)
-			{
-				temp = i[len3];
-				i[len3] = i[len];
-				i[len] = temp;
-				len--;
-			}
-		}
+		_putchar('-');
+		num = num * -1;
 	}
-	len4 += _puts(i);
-	free(i);
-	return (len4);
+	if (num >= 10)
+	{
+		printnum(num / 10);
+		printnum(num % 10);
+	}
+	else if (num < 10)
+	{
+		_putchar(num + '0');
+	}
+	return (count);
 }
-
