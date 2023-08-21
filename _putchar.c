@@ -11,11 +11,11 @@ int _putchar(char c)
 {
 	if (!c)
 	{
-		return(write(1, "\\0", 1));
+		return (write(1, "\\0", 1));
 	}
-	else 
+	else
 	{
 	return (write(1, &c, 1));
 	}
-	return(-1);
+	return (-1);
 }
