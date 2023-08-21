@@ -26,12 +26,14 @@ int printnum(int num)
 	int count = 0;
 
 	if (num < 0)
+	{
 		count++;
+	}
 	count += num_len(num);
 	if (num < 0)
 	{
 		_putchar('-');
-		num = num * -1;
+		num = -num;
 	}
 	if (num >= 10)
 	{
