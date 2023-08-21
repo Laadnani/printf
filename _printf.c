@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 
 	if (!format || !format[0])
 	{
-		return(-1);
+		return (-1);
 	}
 	for (i = 0; format[i]; i++)
 	{
