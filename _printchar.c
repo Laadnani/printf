@@ -8,12 +8,12 @@
 
 int _printchar(char c)
 {
-        int count = 0;
+	int count = 0;
 
-        if(!c)
-        {
-                return(0);
-        }
-        count += _putchar(c);
-        return(count);
+	if (!c)
+	{
+		return (0);
+	}
+	count += _putchar(c);
+	return (count);
 }

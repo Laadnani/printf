@@ -8,9 +8,9 @@
 
 int _printstr(char *str)
 {
-        if(!str)
-        {
-                str = "(null)";
-        }
-        return(_puts(str));
+	if (!str)
+	{
+		str = "(null)";
+	}
+	return (_puts(str));
 }
