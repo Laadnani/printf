@@ -35,11 +35,11 @@ int _printf(const char *format, ...)
 		{
 		case 'c':
 			j = va_arg(args, int);
-			len += _putchar(j);
+			len += _printchar(j);
 			break;
 		case 's':
 			str = va_arg(args, char*);
-			len += _puts(str);
+			len += _printstr(str);
 			break;
 		case 'i':
 		case 'd':
@@ -47,16 +47,17 @@ int _printf(const char *format, ...)
 			len += printnum(j);
 			break;
 		case '%':
-			_putchar(37);
+			_printchar('%');
 			len++;
 			break;
 		default:
-			_putchar(37);
+			_printchar('%');
 			_putchar(format[i]);
 			len += 1;
 			break;
 		}
 	}
+	_putchar(-1);
 	va_end(args);
 	return (len);
 }
