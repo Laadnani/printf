@@ -8,11 +8,11 @@
 * @buffer: Buffer array to handle print
 * @flags:  finds if a flag specifier is active
 * @width: Width
-* @precision: Precision 
-* @size: Size 
+* @precision: Precision
+* @size: Size
 * Return: Number of chars printed
 */
-int p_char(va_list types, char buffer[],int flags, int width, int precision, int size)
+int p_char(va_list types, char buffer[], int flags, int width, int precision, int size)
 {
 char c = va_arg(types, int);
 
