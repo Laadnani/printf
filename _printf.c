@@ -1,63 +1,65 @@
 #include "main.h"
 
+void p_buffer(char buffer[], int *buff_index);
+
 /**
- * _printf - printf function mimic
- * @format: format of the selector
- *
- * Return: returning the int i
+ * _printf - buffer to the printf function
+ * @format: char issued from the printf function to be handled
+ * Return: a printed character 
  */
 int _printf(const char *format, ...)
 {
-	char *str;
-	int len = 0;
-	int i, j;
+    int i, printed = 0, printed_chars = 0;
+    int flags, width, precision, size, buff_index = 0;
+    va_list args;
+    char buffer[BUFF_SIZE];
 
-	va_list(args);
-	va_start(args, format);
+    if (format == NULL)
+        return (-1);
 
-	if (!format || !format[0])
-	{
-		return (0);
-	}
-	for (i = 0; format[i]; i++)
-	{
-		while (format[i] != '%')
-		{
-			if (!format[i])
-			{
-				return (i);
-			}
-			len += _putchar(format[i]);
-			i++;
-		}
-		i++;
-		switch (format[i])
-		{
-		case 'c':
-			j = va_arg(args, int);
-			len += _printchar(j);
-			break;
-		case 's':
-			str = va_arg(args, char*);
-			len += _printstr(str);
-			break;
-		case 'i':
-		case 'd':
-			j = va_arg(args, int);
-			len += printnum(j);
-			break;
-		case '%':
-			_printchar('%');
-			len++;
-			break;
-		default:
-			_printchar('%');
-			_putchar(format[i]);
-			len += 1;
-			break;
-		}
-	}
-	_putchar(-1);
-	va_end(args);
-	return (len);
+    va_start(args, format);
+
+    for (i = 0; format && format[i] != '\0'; i++)
+    {
+        if (format[i] != '%')
+        {
+            buffer[buff_index++] = format[i];
+            if (buff_index == BUFF_SIZE)
+                p_buffer(buffer, &buff_index);
+            printed_chars++;
+        }
+        else
+        {
+            p_buffer(buffer, &buff_index);
+            flags = get_flags(format, &i);
+            width = get_width(format, &i, args);
+            precision = _precision(format, &i, args);
+            size = get_size(format, &i);
+            ++i;
+            printed = to_print(format, &i, args, buffer, flags, width, precision, size);
+            if (printed == -1)
+                return (-1);
+            printed_chars += printed;
+        }
+    }
+
+    p_buffer(buffer, &buff_index);
+
+    va_end(args);
+
+    return (printed_chars);
+}
+
+/**
+ * p_buffer - Prints the contents of the buffer
+ * @buffer: buffer array to store the chars from *format string
+ * @buff_index: indicates the current position in the buffer array where the next character will be stored.
+ * and return to 0 after execution
+ */
+void p_buffer(char buffer[], int *buff_index)
+{
+    if (*buff_index > 0)
+        write(1, &buffer[0], *buff_index);
+
+    *buff_index = 0;
 }
