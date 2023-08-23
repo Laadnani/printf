@@ -29,7 +29,7 @@ int to_print(const char *ft, int *ind, va_list args, char buffer[], int flags, i
         {'S', make_printable}, 
         {'r', p_rev},
         {'R', p_rot13string}, 
-        {NULL, NULL}};
+        {'\0', NULL}};
     for (i = 0; fmt_types[i].ft != '\0'; i++)
         if (ft[*ind] == fmt_types[i].ft)
             return (fmt_types[i].func(args, buffer, flags, width, precision, size));

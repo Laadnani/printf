@@ -1,5 +1,5 @@
 #include "main.h"
-
+/**
  * p_rev - Prints reverse string.
  * @types: agrguments
  * @buffer: Buffer array to handle print
@@ -22,19 +22,20 @@ int p_rev(va_list types, char buffer[], int flags, int width, int precision, int
 
     str = va_arg(types, char *);
 
-    if (str == NULL)
+    if (!str)
     {
         UNUSED(precision);
 
         str = "(Null)";
     }
     for (i = 0; str[i]; i++)
-
-        if (str[1] = "\0")
-        {
-            count += write(1, "%r", 2);
-            return(count);
-        }
+	{
+        	if (str[1] == '\0')
+        	{
+            		count += write(1, "%r", 2);
+            		return(count);
+        	}
+	}
 
     for (i = i - 1; i >= 0; i--)
     {
